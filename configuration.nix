@@ -4,21 +4,18 @@
 
 { config, pkgs, ... }:
 
-# {
-#   system.autoUpgrade.enable = true;
-#   system.autoUpgrade.dates = "weekly";
-
-#   nic.gc.automatic = true;
-#   nix.gc.dates = "daily";
-#   nix.gc.options = "--delete-older-than 10d";
-#   nix.settings.auto-optimise-store = true;
-# }
-
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+  # Update automatici
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.dates = "weekly";
+  nix.gc.automatic = true;
+  nix.gc.dates = "daily";
+  nix.gc.options = "--delete-older-than 10d";
+  nix.settings.auto-optimise-store = true;
 
   # Bootloader.
   boot.loader.grub.enable = true;
